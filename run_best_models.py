@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, classification_report
+from sklearn.linear_model import LogisticRegression  # added for lasso regularization
 
 # Load preprocessed data
 X = np.load('X_preprocessed.npy')
@@ -44,3 +45,10 @@ print("Random Forest Classification Report:\n", classification_report(y_test, rf
 
 print("SVM Accuracy:", accuracy_score(y_test, svm_predictions))
 print("SVM Classification Report:\n", classification_report(y_test, svm_predictions))
+
+# Added Lasso regularized logistic regression (L1 penalty)
+lasso = LogisticRegression(penalty='l1', solver='liblinear', C=1.0, random_state=42)
+lasso.fit(X_train, y_train)
+lasso_predictions = lasso.predict(X_test)
+print("Lasso Logistic Regression (L1) Accuracy:", accuracy_score(y_test, lasso_predictions))
+print("Lasso Logistic Regression (L1) Classification Report:\n", classification_report(y_test, lasso_predictions))

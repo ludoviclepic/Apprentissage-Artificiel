@@ -1,3 +1,4 @@
+# %%
 import subprocess
 
 # Run data preprocessing
@@ -8,3 +9,5 @@ subprocess.run(['python', 'model_training.py'])
 
 # Run best models
 subprocess.run(['python', 'run_best_models.py'])
+
+# %%
